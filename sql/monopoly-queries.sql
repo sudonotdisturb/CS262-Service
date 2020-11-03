@@ -5,7 +5,7 @@
 -- @version Summer, 2015
 --
 
--- Get the number of Game records.
+-- Get the Game records.
 SELECT *
   FROM Game
   ;
@@ -13,6 +13,21 @@ SELECT *
 -- Get the player records.
 SELECT * 
   FROM Player
+  ;
+
+-- Get the PlayerGame records.
+SELECT * 
+  FROM PlayerGame
+  ;
+
+-- Get the PlayerProperty records.
+SELECT * 
+  FROM PlayerProperty
+  ;
+
+-- Get the PlayerBuilding records.
+SELECT * 
+  FROM PlayerBuilding
   ;
 
 -- Get all the users with Calvin email addresses.
