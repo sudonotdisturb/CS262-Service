@@ -82,15 +82,7 @@ function returnDataOr404(res, data) {
  **************************************/
 
 function readHelloMessage(req, res) {
-    res.send('Hello, CS 262 Monopoly service!\n' +
-             'Active URLS:\n');
-    // res.write('Active URLS:\n');
-    // res.write('/players');
-    // res.write('/players/[id]');
-    // res.write('/playergame');
-    // res.write('/playergame/game=[id]');
-    // res.write('/playergame/player=[id]');
-    // res.send('/player_playergame');
+    res.send('Hello, CS 262 Monopoly service!\n');
 }
 
 
