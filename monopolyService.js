@@ -47,7 +47,8 @@ router.delete('/players/:id', deletePlayer);
 
 // PlayerGame
 router.get("/playergame", readPlayerGames);
-router.get("/playergame/:id", readPlayerGame);
+router.get("/playergame/game=:id", readPlayersInGame);
+router.get("/playergame/player=:id", readGamesWithPlayer);
 // router.put("/playergame/:id", updatePlayerGame);
 // router.post('/playergame', createPlayerGame);
 // router.delete('/playergame/:id', deletePlayerGame);
@@ -140,8 +141,18 @@ function readPlayerGames(req, res, next) {
         })
 }
 
-function readPlayerGame(req, res, next) {
+function readPlayersInGame(req, res, next) {
     db.many(`SELECT * FROM PlayerGame WHERE gameID=${req.params.id}`)
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            next(err);
+        })
+}
+
+function readGamesWithPlayer(req, res, next) {
+    db.many(`SELECT * FROM PlayerGame WHERE playerID=${req.params.id}`)
         .then(data => {
             res.send(data);
         })
