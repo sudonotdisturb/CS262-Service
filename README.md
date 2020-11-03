@@ -14,7 +14,7 @@ The database is relational with the schema specified in the `sql/` sub-directory
 and password are stored as Heroku configuration variables rather than in this (public) repo.
 
 
-## Answers to Homework 2 questions
+## Answers to Homework 3 questions
 
 1. What are the (active) URLs for your data service?
 ```
