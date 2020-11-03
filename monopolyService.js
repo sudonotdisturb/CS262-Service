@@ -35,12 +35,22 @@ const port = process.env.PORT || 3000;
 const router = express.Router();
 router.use(express.json());
 
+// Home screen
 router.get("/", readHelloMessage);
+
+// Players
 router.get("/players", readPlayers);
 router.get("/players/:id", readPlayer);
 router.put("/players/:id", updatePlayer);
 router.post('/players', createPlayer);
 router.delete('/players/:id', deletePlayer);
+
+// PlayerGame
+router.get("/playergame", readPlayerGame);
+router.get("/playergame/:id", readPlayerGame);
+// router.put("/playergame/:id", updatePlayerGame);
+// router.post('/playergame', createPlayerGame);
+// router.delete('/playergame/:id', deletePlayerGame);
 
 app.use(router);
 app.use(errorHandler);
@@ -109,6 +119,29 @@ function createPlayer(req, res, next) {
 
 function deletePlayer(req, res, next) {
     db.oneOrNone(`DELETE FROM Player WHERE id=${req.params.id} RETURNING id`)
+        .then(data => {
+            returnDataOr404(res, data);
+        })
+        .catch(err => {
+            next(err);
+        });
+}
+
+
+// PlayerGame
+
+function readPlayerGame(req, res, next) {
+    db.many("SELECT * FROM PlayerGame")
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            next(err);
+        })
+}
+
+function readPlayerGame(req, res, next) {
+    db.oneOrNone(`SELECT * FROM PlayerGame WHERE id=${req.params.id}`)
         .then(data => {
             returnDataOr404(res, data);
         })
