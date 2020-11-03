@@ -14,18 +14,18 @@ const pgp = require('pg-promise')();
 const db = pgp({
     host: "salt.db.elephantsql.com",
     port: 5432,
-    database: process.env.USER,
+    database: process.env.DB_URL,
     user: process.env.USER,
     password: process.env.PASSWORD
 });
 
-const { Pool } = require('pg');
-const pool = new Pool({
-    connectionString: process.env.DB_URL,
-    ssl: {
-        rejectUnauthorized: false
-    }
-});
+// const { Pool } = require('pg');
+// const pool = new Pool({
+//     connectionString: process.env.DB_URL,
+//     ssl: {
+//         rejectUnauthorized: false
+//     }
+// });
 
 // Configure the server and its routes.
 
