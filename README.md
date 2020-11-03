@@ -3,7 +3,7 @@
 This is the data service application for my [CS262 repo](https://github.com/sudonotdisturb/CS262) 
 and it is deployed here:
           
-<https://cs262-monopoly-service.herokuapp.com/>
+<https://cs262-service.herokuapp.com/>
 
 It is based on the standard Heroku with Node.js tutorial.
 
