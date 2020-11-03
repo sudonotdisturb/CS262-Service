@@ -53,6 +53,9 @@ router.get("/playergame/player=:id", readGamesWithPlayer);
 // router.post('/playergame', createPlayerGame);
 // router.delete('/playergame/:id', deletePlayerGame);
 
+// Players and PlayerGame
+router.get("/player_playergame", joinPlayer_PlayerGame);
+
 app.use(router);
 app.use(errorHandler);
 app.listen(port, () => console.log(`Listening on port ${port}`));
@@ -74,9 +77,18 @@ function returnDataOr404(res, data) {
     }
 }
 
+/**************************************
+            Home Screen
+ **************************************/
+
 function readHelloMessage(req, res) {
     res.send('Hello, CS 272 Monopoly service!');
 }
+
+
+/**************************************
+            Player
+ **************************************/
 
 function readPlayers(req, res, next) {
     db.many("SELECT * FROM Player")
@@ -128,8 +140,9 @@ function deletePlayer(req, res, next) {
         });
 }
 
-
-// PlayerGame
+/**************************************
+            PlayerGame
+ **************************************/
 
 function readPlayerGames(req, res, next) {
     db.many("SELECT * FROM PlayerGame")
@@ -153,6 +166,20 @@ function readPlayersInGame(req, res, next) {
 
 function readGamesWithPlayer(req, res, next) {
     db.many(`SELECT * FROM PlayerGame WHERE playerID=${req.params.id}`)
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            next(err);
+        })
+}
+
+/**************************************
+        Player and PlayerGame
+ **************************************/
+
+function joinPlayer_PlayerGame(req, res, next) {
+    db.many("SELECT * FROM Player, PlayerGame WHERE playerID = Player.ID")
         .then(data => {
             res.send(data);
         })
