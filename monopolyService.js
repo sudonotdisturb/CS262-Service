@@ -141,7 +141,7 @@ function readPlayerGames(req, res, next) {
 }
 
 function readPlayerGame(req, res, next) {
-    db.oneOrNone(`SELECT * FROM PlayerGame WHERE id=${req.params.id}`)
+    db.oneOrNone(`SELECT * FROM PlayerGame WHERE gameid=${req.params.id}`)
         .then(data => {
             returnDataOr404(res, data);
         })
