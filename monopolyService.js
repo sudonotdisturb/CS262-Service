@@ -141,11 +141,11 @@ function readPlayerGames(req, res, next) {
 }
 
 function readPlayerGame(req, res, next) {
-    db.oneOrNone(`SELECT * FROM PlayerGame WHERE gameID=${req.params.id}`)
+    db.many(`SELECT * FROM PlayerGame WHERE gameID=${req.params.id}`)
         .then(data => {
-            returnDataOr404(res, data);
+            res.send(data);
         })
         .catch(err => {
             next(err);
-        });
+        })
 }
