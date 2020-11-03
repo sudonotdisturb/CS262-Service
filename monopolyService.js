@@ -14,7 +14,7 @@ const pgp = require('pg-promise')();
 const db = pgp({
     host: "salt.db.elephantsql.com",
     port: 5432,
-    database: process.env.DB_URL,
+    database: process.env.DATABASE_URL,
     user: process.env.USER,
     password: process.env.PASSWORD
 });
